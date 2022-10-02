@@ -174,7 +174,7 @@ class LocationManagerClient implements LocationClient, LocationListenerCompat {
 
     this.currentLocationProvider = determineProvider(this.locationManager, accuracy);
 
-    if (this.currentLocationProvider == null) {
+    if (this.currentLocationProvider == null || this.currentLocationProvider.trim().isEmpty()) {
       errorCallback.onError(ErrorCodes.locationServicesDisabled);
       return;
     }

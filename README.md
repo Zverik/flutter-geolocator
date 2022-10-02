@@ -1,3 +1,27 @@
+# This is an Android override
+
+See the original Geolocator plugin [at Baseflow](https://github.com/Baseflow/flutter-geolocator).
+
+This repo is needed only when publishing at F-Droid, because it contains an untouched `geolocator_android`
+plugin without the Google API. To use it, simply include this section into your `pubspec.yaml`:
+
+```yaml
+dependency_overrides:
+  geolocator_android:
+    git:
+      url: https://github.com/Zverik/flutter-geolocator.git
+      ref: floss
+      path: geolocator_android
+```
+
+For an example of how it's done, see the commented out dependency override in
+[this pubspec](https://github.com/Zverik/every_door/blob/main/pubspec.yaml)
+and the `sed` command uncommenting in at [f-droid](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/info.zverev.ilya.every_door.yml).
+
+Note that this plugin is updated by rebasing it onto the latest version from the upstream repo.
+Meaning, your system may not catch up on the upstream being updated. In that case, you might need
+to clean up your `.pub-cache`.
+
 # Flutter geolocator plugin
 
 The Flutter geolocator plugin is built following the federated plugin architecture. A detailed explanation of the federated plugin concept can be found in the [Flutter documentation](https://flutter.dev/docs/development/packages-and-plugins/developing-packages#federated-plugins). This means the geolocator plugin is separated into the following packages:
