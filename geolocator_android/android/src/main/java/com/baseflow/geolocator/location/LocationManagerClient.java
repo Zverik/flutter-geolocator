@@ -106,7 +106,7 @@ class LocationManagerClient implements LocationClient, LocationListener {
 
     String provider = locationManager.getBestProvider(criteria, true);
 
-    if (provider.trim().isEmpty()) {
+    if (provider == null || provider.trim().isEmpty()) {
       List<String> providers = locationManager.getProviders(true);
       if (providers.size() > 0) provider = providers.get(0);
     }
@@ -181,7 +181,7 @@ class LocationManagerClient implements LocationClient, LocationListener {
 
     this.currentLocationProvider = getBestProvider(this.locationManager, locationAccuracy);
 
-    if (this.currentLocationProvider.trim().isEmpty()) {
+    if (this.currentLocationProvider == null || this.currentLocationProvider.trim().isEmpty()) {
       errorCallback.onError(ErrorCodes.locationServicesDisabled);
       return;
     }
